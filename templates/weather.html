@@ -1,0 +1,116 @@
+{% extends 'basic.html'%}
+{% block title%}
+Weather App
+{% endblock title%}
+{% block body%}
+ <style>
+        * {
+            margin: 0;
+            box-sizing: border-box;
+            font-family: "Bitstream Vera Sans Mono", Monaco, "Courier New", Courier, monospace;
+        }
+
+        #main {
+            text-align: center;
+            padding-top: 10px;
+        }
+.btn-grad {background-image: linear-gradient(to right, #FF512F 0%, #DD2476  51%, #FF512F  100%)}
+         .btn-grad {
+            margin: 10px;
+            padding: 10px ;
+            
+            text-align: center;
+            text-transform: uppercase;
+            transition: 0.5s;
+            background-size: 200% auto;
+            color: white;            
+            box-shadow: 0 0 20px #eee;
+            border-radius: 10px;
+            
+          }
+
+          .btn-grad:hover {
+            background-position: right center; /* change the direction of the change here */
+            color: #fff;
+            text-decoration: none;
+          }
+         
+
+         
+        
+
+        h1 {
+            margin-bottom: 5px;
+        }
+
+       
+
+      body{
+   background-color: #0cbaba;
+     background-image: linear-gradient(315deg, #0cbaba 0%, #380036 74%);
+ repeat: no-repeat;
+ }
+ span{
+   color: white;
+ }
+ .card{
+  border-radius: 15px;
+  background-color: #eec0c6;
+background-image: linear-gradient(315deg, #eec0c6 0%, #7ee8fa 74%);
+
+
+ }
+ .form-group input{
+ border-radius: 12px;
+ }
+ h4{
+  background-color: red;
+    }
+ 
+    </style>
+</head>
+<body>
+<div class="container mt-4 ">
+    
+    <div class="row">
+  
+    <div class="col-md-4"></div>
+    <div class="col-md-6">
+    <div class="row">
+    <div class="col-md-2"></div>
+    </div>
+    <div class="col-md-8">
+     
+    <div class="card mt-4">
+    
+    {% for message in messages  %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong></strong>{{message}}
+        <button type="button" class="close border-dark" data-dismiss="alert" aria-label="Close ">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      {% endfor %}
+    <div class="card-body">   
+    <div id="main">
+    <h1>Find the Weather</h1>
+    <form method="GET">
+        <div class="col-sm-12">
+            
+            
+            <input type="text" class=" col-sm-12 col-form-label" id="city" value="{{ request.GET.city }}" placeholder="City..." name="city"/>
+            
+        <input class="btn-grad" type="submit" value="Submit"/>
+        </div>
+    </form>
+    {% if result %}
+        <h3>{{ result.region }}</h3>
+        <h3>{{ result.dayhour }}</h3>
+        <h3>{{ result.temp_now }}° C</h3>
+        <h3>{{ result.weather_now }}</h3>
+    {% endif %}
+</div>
+ {% endblock body%}
+
+
+

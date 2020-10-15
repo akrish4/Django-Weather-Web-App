@@ -1,0 +1,94 @@
+{% extends 'basic.html' %} 
+{% block title %} Contact {% endblock title %}
+{%block body %}
+ <style>
+ body{
+background-color: #0cbaba;
+     background-image: linear-gradient(315deg, #0cbaba 0%, #380036 74%);
+
+ }
+
+ .card{
+  border-radius: 15px;
+
+background-color: #ffcfdf;
+background-image: linear-gradient(315deg, #ffcfdf 0%, #b0f3f1 74%);
+
+
+
+
+
+ }
+
+ 
+ </style>
+
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-2"></div>
+      </div>
+      <div class="col-md-8">
+        <div class="card mt-4">
+          <div class="card-body">
+          <marquee behavior="" direction="left"
+  >Fill the details , our team will get in touch with you.</marquee
+>
+            <form action="/contact" method="post">
+              {% csrf_token %}
+              <div class="form-group">
+                <h4 class="text-center">Contact us</h4>
+
+                <label for="username">FullName</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="fullname"
+                  id="fullname"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="pass1">Email Address</label>
+                <input
+                  type="Email"
+                  class="form-control"
+                  name="email"
+                  id="email"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="pass1">Phone Number</label>
+                <input
+                  type="Number"
+                  class="form-control"
+                  name="num"
+                  id="num"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="description">Description</label>
+                <textarea
+                  class="form-control"
+                  name="description"
+                  id="description"
+                  rows="2"
+                ></textarea>
+              </div>
+              <button type="submit" class="btn btn-warning btn-lg">
+                submit
+              </button>
+            </form>
+           
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+ {% endblock body %}

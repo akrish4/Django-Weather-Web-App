@@ -1,0 +1,43 @@
+{% extends 'basic.html' %}
+{% block title %}
+search results
+{% endblock title %}
+{% block body %}
+
+<div class="container my-3">
+<h3> Search Results ....</h3>
+{% if allPosts|length < 1  %}
+Your Search <b>{{query}}</b> did not match any information
+<br>
+Suggestions:
+<ul>
+<li>
+Make sure that all words are spelled Correctly. <br>
+</li>
+</ul>
+{% endif %}
+
+{% for post in allPosts  %}
+<div class="container mt-3">
+<div class="card">
+<div class="card-header">
+{{post.title}}
+</div>
+
+<div class="card-body">
+<blockquote class="blockquote mb-0">
+<p>{{post.content}} </p>
+<footer class="blockquote-footer">
+Article By : {{post.name}}<cite title="Source Title"> <b> {{post.timeStamp}} </b> </cite></footer>
+
+</blockquote>
+</div>
+</div>
+</div>
+
+{% endfor %}
+</div>
+
+
+
+{% endblock body %}

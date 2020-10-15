@@ -1,0 +1,192 @@
+{% load socialaccount %}
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&family=Lobster&display=swap" rel="stylesheet">
+    
+
+    <link rel="icon" href="https://img.icons8.com/fluent/64/000000/login-rounded-right.png" type="image/x-icon"> 
+ <style>
+ body{
+    background-color: #0cbaba;
+     background-image: linear-gradient(315deg, #0cbaba 0%, #380036 74%);
+
+
+
+ }
+ p{
+   color:white
+ }
+ span{
+   color: white;
+ }
+ .card{
+  border-radius: 15px;
+background-color: #7ee8fa;
+background-image: linear-gradient(315deg, #7ee8fa 0%, #80ff72 74%);
+
+
+
+
+
+
+
+
+
+ }
+ .form-group input{
+ border-radius: 12px;
+ }
+ h4{
+  background-color: reds;
+    }
+ </style>
+    <title style="background-color: red;">signUp</title>
+  </head>
+  <body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<span class="navbar-brand mb-0 h1">THE WEATHER APP</span>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav navbar-nav ml-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/ ">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link"  href="/handleBlog">Blog</a>
+        
+      </li>
+         <li class="nav-item">
+        <a class="nav-link"  href="/contact">Contact</a>
+      </li>
+         <li class="nav-item">
+        <a class="nav-link"  href="/weather">Weather</a>
+       
+      </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/about">About us</a>
+       </li>
+
+ {% if user.is_authenticated %}
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <b>welcome {{request.user}}</b>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/logout">Log out</a>
+            </div>
+
+            {% else %}
+          </li>
+
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Authentication
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/login">Login</a>
+              <a class="dropdown-item" href="/signUp">Sign Up</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/logout">Log out</a>
+            </div>
+          </li>
+          {% endif %}
+        </ul>
+      
+      </div>
+</nav>
+    <div class="container mt-4">
+    <div class="row">
+
+    <div class="col-md-4"></div>
+    <div class="col-md-6">
+    <div class="row">
+    <div class="col-md-2"></div>
+    </div>
+    <div class="col-md-8">
+    <div class="card mt-4">
+      {% for message in messages %}
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          <strong></strong>{{message}}
+          <button type="button" class="close " data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        {% endfor %}
+        
+    <div class="card-body">   
+    <a  class="btn btn-sm btn-block btn-light mt-0"  href="{% provider_login_url 'google' %}">Login With <img src="https://img.icons8.com/color/30/000000/google-logo.png"/></a>
+    <p class='text-center' mt-1">OR</p>
+
+     <form action="/signUp" method="post">{% csrf_token %}
+     <div class="form-group">
+     <h4 class="text-center">SIGN UP</h4>
+     
+     <label for="username">UserName</label>
+     <input type="text" class="form-control" name="username" id="username" placeholder="username must be alphanumeric" Required>
+     </div>
+     <div class="form-group">
+     <label for="firstname">FirstName</label>
+     <input type="text" class="form-control" name="firstname" id="firstname"Required>
+     </div>
+     <div class="form-group">
+     <label for="lastname">LastName</label>
+     <input type="text" class="form-control" name="lastname" id="lastname"Required>
+     </div>
+     <div class="form-group">
+     <label for="email">Email</label>
+     <input type="text" class="form-control" name="email" id="email" placeholder="enter the valid email address"Required>
+     </div>
+     <div class="form-group">
+     <label for="pass1">Password</label>
+     <input type="password" class="form-control" name="pass1" id="pass1"Required>
+     </div>
+     <div class="form-group">
+     <label for="pass2">Confirm password</label>
+     <input type="password" class="form-control" name="pass2" id="pass2"Required>
+     </div>
+     <button type="submit" class="btn btn-outline-light rounded-pill btn-md">SIGN UP</button>
+    </form>
+    <span>Already a User?</span> <a href="/login">login</a>
+    </div>   
+ 
+</div>
+
+</div>
+
+ >
+
+ 
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  </body>
+</html>
