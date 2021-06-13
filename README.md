@@ -18,7 +18,7 @@
 - Django framework (Python)
 - Bootstrap 4
 - HTML 
-- CSS 
+
 
 
 ## SCREENSHOTS
