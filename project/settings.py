@@ -140,11 +140,11 @@ USE_L10N = True
 
 USE_TZ = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'your@gmail.com'
-EMAIL_HOST_PASSWORD = 'yourpassword'
+EMAIL_HOST_USER = 'i.am.dev.vijay@gmail.com'
+EMAIL_HOST_PASSWORD = 'ak@delhi'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_BACKEND = 'django.core.mail.backends.mail.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 # enable less secure app
 # https://myaccount.google.com/lesssecureapps?pli=1
